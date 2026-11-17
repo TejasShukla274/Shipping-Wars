@@ -1,0 +1,572 @@
+/* ============ THEME TOKENS (light) ============ */
+:root {
+  --bg: #f5f7fa;
+  --card: #fff;
+  --ink: #0b1f3a;
+  --mut: #5b6b80;
+  --line: #e2e8f0;
+  --navy: #0b2447;
+  --navy2: #143a6b;
+  --g: #12a150;
+  --gbg: #e6f6ec;
+  --am: #b7791f;
+  --abg: #fdf3dc;
+  --r: #c53030;
+  --rbg: #fde8e8;
+  --sh: 0 1px 2px rgba(11, 36, 71, 0.06);
+}
+/* ============ THEME TOKENS (dark - follows OS) ============ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a1424;
+    --card: #101e35;
+    --ink: #e8eef7;
+    --mut: #93a4bb;
+    --line: #223350;
+    --navy: #07101f;
+    --navy2: #1d4a85;
+    --g: #34d27b;
+    --gbg: #0f3322;
+    --am: #f0b54a;
+    --abg: #3a2d0f;
+    --r: #ff8080;
+    --rbg: #3d1a1a;
+  }
+}
+/* ============ THEME TOKENS (dark - manual toggle) ============ */
+:root[data-theme="dark"] {
+  --bg: #0a1424;
+  --card: #101e35;
+  --ink: #e8eef7;
+  --mut: #93a4bb;
+  --line: #223350;
+  --navy: #07101f;
+  --navy2: #1d4a85;
+  --g: #34d27b;
+  --gbg: #0f3322;
+  --am: #f0b54a;
+  --abg: #3a2d0f;
+  --r: #ff8080;
+  --rbg: #3d1a1a;
+}
+/* ============ BASE / RESET ============ */
+* {
+  box-sizing: border-box;
+}
+:root {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    14px/1.45 Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--g);
+  outline-offset: 2px;
+}
+/* ============ APP LAYOUT ============ */
+#app {
+  display: flex;
+  min-height: 100vh;
+}
+/* ============ SIDEBAR (collapsible) ============ */
+aside {
+  width: 232px;
+  background: var(--navy);
+  color: #cfd9e8;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.25s;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 20;
+}
+aside.c {
+  width: 60px;
+}
+aside.c .lb,
+aside.c .brand span {
+  display: none;
+}
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 16px 14px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.brand i {
+  background: var(--g);
+  color: #fff;
+  border-radius: 7px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  flex-shrink: 0;
+}
+aside nav {
+  padding: 6px 8px;
+  flex: 1;
+}
+aside nav button {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: 0;
+  color: inherit;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+aside nav button:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+aside nav button.on {
+  background: rgba(255, 255, 255, 0.13);
+  color: #fff;
+  box-shadow: inset 3px 0 var(--g);
+}
+aside nav .ic {
+  width: 20px;
+  text-align: center;
+}
+.side-f {
+  padding: 12px;
+  font-size: 11px;
+  color: #8fa3bf;
+}
+main {
+  flex: 1;
+  min-width: 0;
+}
+/* ============ TOP BAR (mode toggle, language, notifications) ============ */
+header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  flex-wrap: wrap;
+}
+.ib {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 10px;
+  position: relative;
+}
+.ib:hover {
+  background: var(--bg);
+}
+.seg {
+  display: flex;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 3px;
+}
+.seg button {
+  border: 0;
+  background: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--mut);
+}
+.seg button.on {
+  background: var(--navy);
+  color: #fff;
+}
+.sp {
+  flex: 1;
+}
+.dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--r);
+  color: #fff;
+  border-radius: 9px;
+  font-size: 10px;
+  padding: 0 5px;
+}
+/* ============ DROPDOWN MENUS ============ */
+.menu {
+  position: absolute;
+  right: 0;
+  top: 44px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  min-width: 250px;
+  padding: 6px;
+  z-index: 30;
+  display: none;
+}
+.menu.o {
+  display: block;
+}
+.menu div,
+.menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: 0;
+  background: none;
+  border-radius: 6px;
+}
+.menu button:hover {
+  background: var(--bg);
+}
+.menu small {
+  color: var(--mut);
+}
+.rel {
+  position: relative;
+}
+/* ============ PAGE CONTAINER, GRIDS & CARDS ============ */
+.pg {
+  padding: 20px;
+  max-width: 1280px;
+  margin: auto;
+}
+.pg h1 {
+  font-size: 20px;
+  margin: 0 0 2px;
+}
+.sub {
+  color: var(--mut);
+  margin: 0 0 16px;
+}
+.grid {
+  display: grid;
+  gap: 12px;
+}
+.k {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+.two {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: var(--sh);
+}
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+.st .v {
+  font-size: 22px;
+  font-weight: 700;
+}
+.st .l {
+  color: var(--mut);
+  font-size: 12px;
+}
+.st .d {
+  font-size: 11px;
+  color: var(--g);
+}
+/* ============ STATUS BADGES (Valid / Expiring / Expired etc.) ============ */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.b-g {
+  background: var(--gbg);
+  color: var(--g);
+}
+.b-a {
+  background: var(--abg);
+  color: var(--am);
+}
+.b-r {
+  background: var(--rbg);
+  color: var(--r);
+}
+.b-n {
+  background: var(--bg);
+  color: var(--mut);
+  border: 1px solid var(--line);
+}
+/* ============ BUTTONS & FORM CONTROLS ============ */
+.btn {
+  background: var(--navy2);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+}
+.btn:hover {
+  filter: brightness(1.12);
+}
+.btn.g {
+  background: var(--g);
+  color: #fff;
+}
+.btn.o {
+  background: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn.d {
+  background: var(--r);
+  color: #fff;
+}
+.btn.s {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+input,
+select {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  max-width: 100%;
+}
+/* ============ DATA TABLES & FILTER BAR ============ */
+.tw {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  text-align: left;
+  padding: 9px 8px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+th {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--mut);
+  letter-spacing: 0.4px;
+}
+.fl {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+/* ============ MARKETPLACE CARDS ============ */
+.lst {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 12px;
+}
+.route {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+.route:before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--g);
+}
+.kv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 10px;
+  margin: 10px 0;
+  font-size: 12px;
+  color: var(--mut);
+}
+.kv b {
+  color: var(--ink);
+  display: block;
+  font-size: 13px;
+}
+.low {
+  background: var(--gbg);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+}
+.low b {
+  color: var(--g);
+  font-size: 18px;
+}
+.cd {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--am);
+}
+/* ============ LOCKED LISTINGS & FASTAG CARD ============ */
+.lock {
+  opacity: 0.6;
+}
+.fbal {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  color: #fff;
+  border: 0;
+}
+.fbal .v {
+  font-size: 30px;
+  font-weight: 700;
+}
+.alert {
+  background: var(--abg);
+  color: var(--am);
+  border-radius: 8px;
+  padding: 9px 12px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.sim {
+  font-size: 11px;
+  color: var(--mut);
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  padding: 2px 7px;
+  display: inline-block;
+}
+/* ============ MODAL (recharge) & TOAST ============ */
+.mod {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 12, 25, 0.55);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+  padding: 16px;
+}
+.mod .card {
+  width: min(420px, 100%);
+}
+.amts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.amts button {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 8px;
+  padding: 8px 14px;
+}
+.amts button.on {
+  border-color: var(--g);
+  background: var(--gbg);
+  color: var(--g);
+  font-weight: 700;
+}
+#toast {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  display: grid;
+  gap: 8px;
+  z-index: 60;
+}
+#toast div {
+  background: var(--navy);
+  color: #fff;
+  border-left: 4px solid var(--g);
+  padding: 10px 14px;
+  border-radius: 8px;
+  animation: in 0.3s;
+  max-width: 320px;
+}
+@keyframes in {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+}
+.pg > * {
+  animation: in 0.3s;
+}
+/* ============ INTEGRATION NOTES ============ */
+.integ {
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--mut);
+}
+.integ table td {
+  white-space: normal;
+}
+/* ============ RESPONSIVE / MOBILE ============ */
+@media (max-width: 760px) {
+  aside {
+    position: fixed;
+    left: -240px;
+    transition: left 0.25s;
+    width: 232px;
+  }
+  aside.m {
+    left: 0;
+  }
+  aside.c {
+    width: 232px;
+  }
+  aside.c .lb,
+  aside.c .brand span {
+    display: inline;
+  }
+  .pg {
+    padding: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

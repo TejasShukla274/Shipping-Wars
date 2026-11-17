@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Smart Reverse Auction Logistics Platform</title>
+    <!-- All styling lives in one stylesheet, split into banner-commented sections -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- App shell: layout.js fills #sb (sidebar) and #hd (top bar); main.js fills #pg (page) -->
+    <div id="app">
+      <aside id="sb"></aside>
+      <main>
+        <header id="hd"></header>
+        <div id="pg" class="pg"></div>
+      </main>
+    </div>
+    <div id="toast"></div>
+
+    <!-- Script order matters: data/helpers first, feature modules next, main.js last -->
+    <script src="js/i18n.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/transporter.js"></script>
+    <script src="js/owner.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/realtime.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
